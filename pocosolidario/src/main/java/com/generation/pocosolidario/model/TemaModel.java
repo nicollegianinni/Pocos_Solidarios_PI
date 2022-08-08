@@ -8,13 +8,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table (name = "tb_tema")
+@Table(name = "tb_tema")
 public class TemaModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "O atributo discrição é obrigatório!")
 	private String descricao;
 
@@ -33,6 +33,5 @@ public class TemaModel {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
+
 }
