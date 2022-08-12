@@ -20,46 +20,48 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.generation.pocosolidario.model.TemaModel;
-import com.generation.pocosolidario.repository.TemaRepository;
+import com.generation.pocosolidario.model.PostagemModel;
+import com.generation.pocosolidario.repository.PostagemRepository;
 
-@RestController //
-@RequestMapping ("/tema")
-@CrossOrigin ("*")
-public class TemaController {
+@RestController
+@RequestMapping ("/postagens")
+@CrossOrigin("*")
+public class PostagemController {
+
+	@Autowired
+	private PostagemRepository postagemRepository;
 	
-	@Autowired 
-	private TemaRepository repositoryTema;
-	
-	@GetMapping // SELECT*FROM tb_produtos;
-	public ResponseEntity <List < TemaModel>> getAll(){
-		return ResponseEntity.ok(repositoryTema.findAll());
+	@GetMapping
+	public ResponseEntity <List<PostagemModel>>getAll(){
+		return ResponseEntity.ok(postagemRepository.findAll()); 
 	}
 	
+	
 	@GetMapping ("/{id}")
-	public ResponseEntity <TemaModel> getById (@PathVariable Long id){
-		return repositoryTema.findById(id)
+	public ResponseEntity <PostagemModel> getById (@PathVariable Long id){
+		return postagemRepository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping ("/descricao/{descricao}")
-	public ResponseEntity <List<TemaModel>> getByDescricao (@PathVariable String descricao){ // ResponseEntity é uma lista
-		return ResponseEntity.ok(repositoryTema.findAllByDescricaoContainingIgnoreCase (descricao));
+	@GetMapping ("/legenda/{legenda}")
+	public ResponseEntity <List<PostagemModel>> getByLegenda (@PathVariable String local){ 
+		return ResponseEntity.ok(postagemRepository.findAllBylocalizacaoContainingIgnoreCase (local));
 	}
 	@PostMapping
-	public ResponseEntity <TemaModel> post (@RequestBody @Valid  TemaModel tema){ //RequestBody pega o que tem no corpo da requisição
-		return ResponseEntity.status(HttpStatus.CREATED).body(repositoryTema.save(tema));	
+	public ResponseEntity <PostagemModel> post (@RequestBody @Valid  PostagemModel post){ //RequestBody pega o que tem no corpo da requisição
+		return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(post));	
 	}
 	@PutMapping
-	public ResponseEntity <TemaModel> put (@RequestBody TemaModel tema){ 
-		return ResponseEntity.status(HttpStatus.OK).body(repositoryTema.save(tema));
+	public ResponseEntity <PostagemModel> put (@RequestBody PostagemModel post){ 
+		return ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(post));
 	}
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping ("/{id}")
 	public void delete (@PathVariable Long id) {
-	Optional<TemaModel> tema = repositoryTema.findById(id);
-		if(tema.isEmpty())
+	Optional<PostagemModel> post = postagemRepository.findById(id);
+		if(post.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-	repositoryTema.deleteById(id);
+		postagemRepository.deleteById(id);
 	}
+	
 }
