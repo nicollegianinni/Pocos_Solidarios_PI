@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.generation.pocosolidario.model.UsuarioLogin;
 import com.generation.pocosolidario.model.UsuarioModel;
 import com.generation.pocosolidario.repository.UsuarioRepository;
+import com.generation.pocosolidario.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")

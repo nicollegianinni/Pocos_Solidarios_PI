@@ -12,10 +12,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-<<<<<<< HEAD
-=======
 
->>>>>>> 2629c7cabd75d7501e85a9400b407262d56f5bcc
+
+
 @Entity
 @Table(name = "tb_tema")
 public class TemaModel {
@@ -23,13 +22,13 @@ public class TemaModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-<<<<<<< HEAD
+
 	
 	@NotBlank(message = "O atributo descrição é obrigatório!")
-=======
+
 
 	@NotBlank(message = "O atributo discrição é obrigatório!")
->>>>>>> 2629c7cabd75d7501e85a9400b407262d56f5bcc
+
 	private String descricao;
 	
 	
@@ -37,10 +36,6 @@ public class TemaModel {
 	@JsonIgnoreProperties("tema")
 	private List<PostagemModel> postagem;
 	
-
-	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("tema")
-	private List<PostagemModel> postagem;
 
 	public Long getId() {
 		return id;
@@ -65,9 +60,5 @@ public class TemaModel {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> 2629c7cabd75d7501e85a9400b407262d56f5bcc
+
 }
