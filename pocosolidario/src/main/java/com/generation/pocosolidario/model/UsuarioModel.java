@@ -16,6 +16,8 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "tb_usuarios")
 public class UsuarioModel {
@@ -28,6 +30,7 @@ public class UsuarioModel {
 	@NotNull(message = "O Atributo Nome é Obrigatório!")
 	private String nome;
 
+	@Schema(example = "email@email.com.br")
 	@NotNull(message = "O Atributo Usuário é Obrigatório!")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
 	private String usuario;
@@ -45,9 +48,9 @@ public class UsuarioModel {
 	@NotNull(message = "O Atributo endereço é Obrigatório!")
 	private String endereco;
 
-	@NotNull( message = "O Atributo CPF ou CNPJ é Obrigatório!")
-	@Size (min = 11, max = 14)
-	private String CPF_CNPJ;
+	@NotBlank( message = "O Atributo CPF ou CNPJ é Obrigatório!")
+	@Size (min = 11, message = "O CPF ou CNPJ deve conter no minimo 11 números")
+	private String cpfCnpj;
 
 //RELACIONAMENTO COM POSTAGENS 
 
@@ -111,12 +114,12 @@ public class UsuarioModel {
 		this.endereco = endereco;
 	}
 
-	public String getCPF_CNPJ() {
-		return CPF_CNPJ;
+	public String getCpfCnpj() {
+		return cpfCnpj;
 	}
 
-	public void setCPF_CNPJ(String cPF_CNPJ) {
-		CPF_CNPJ = cPF_CNPJ;
+	public void setCpfCnpj(String cpfCnpj) {
+		this.cpfCnpj = cpfCnpj;
 	}
 
 	public List<PostagemModel> getPostagem() {
@@ -126,6 +129,6 @@ public class UsuarioModel {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
-	
+
 	
 }
