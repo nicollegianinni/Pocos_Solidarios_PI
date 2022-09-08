@@ -41,6 +41,8 @@ public class UsuarioModel {
 
 	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String foto;
+	
+	private String tipo;
 
 	@Size(min = 11, message = "O telefone deve conter DDD + número")
 	private String telefone;
@@ -51,6 +53,7 @@ public class UsuarioModel {
 	@NotBlank( message = "O Atributo CPF ou CNPJ é Obrigatório!")
 	@Size (min = 11, message = "O CPF ou CNPJ deve conter no minimo 11 números")
 	private String cpfCnpj;
+	
 
 //RELACIONAMENTO COM POSTAGENS 
 
@@ -121,6 +124,14 @@ public class UsuarioModel {
 	public void setCpfCnpj(String cpfCnpj) {
 		this.cpfCnpj = cpfCnpj;
 	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 	public List<PostagemModel> getPostagem() {
 		return postagem;
@@ -129,6 +140,6 @@ public class UsuarioModel {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
-
+	
 	
 }
