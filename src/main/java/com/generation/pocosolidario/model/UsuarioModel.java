@@ -54,6 +54,10 @@ public class UsuarioModel {
 	@Size (min = 11, message = "O CPF ou CNPJ deve conter no minimo 11 números")
 	private String cpfCnpj;
 	
+<<<<<<< Updated upstream
+=======
+	private String tipo;
+>>>>>>> Stashed changes
 
 //RELACIONAMENTO COM POSTAGENS 
 
@@ -140,6 +144,20 @@ public class UsuarioModel {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
+<<<<<<< Updated upstream
 	
+=======
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	
+
+>>>>>>> Stashed changes
 	
 }

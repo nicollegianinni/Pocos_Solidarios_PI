@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -44,6 +45,12 @@ public class PostagemController {
 		return postagemRepository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
+	
+	
+	@GetMapping("/usuario/{usuario}")
+	public ResponseEntity<List<PostagemModel>> getByUsuario(@PathVariable long usuario){
+		return ResponseEntity.ok(postagemRepository.findAllByUsuarioContainingIgnoreCase(usuario));
+	}
 
 	@GetMapping("/legenda/{legenda}")
 	public ResponseEntity<List<PostagemModel>> getByLegenda(@PathVariable String legenda) {
@@ -62,6 +69,7 @@ public class PostagemController {
 
 	@PostMapping
 	public ResponseEntity<PostagemModel> post(@Valid @RequestBody PostagemModel postagem) {
+		
 		return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
 	}
 

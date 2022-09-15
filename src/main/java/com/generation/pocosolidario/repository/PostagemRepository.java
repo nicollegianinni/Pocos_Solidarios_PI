@@ -3,6 +3,7 @@ package com.generation.pocosolidario.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +20,8 @@ public interface PostagemRepository extends JpaRepository<PostagemModel, Long> {
 	public List<PostagemModel> findAllByLocalizacaoContainingIgnoreCase(String localizacao);
 
 	public List<PostagemModel> findAllByFeedbackContainingIgnoreCase(String feedback);
+	
+	@Query(nativeQuery=true, value="SELECT * from tb_postagens a INNER JOIN tb_usuarios b WHERE a.usuario_id = :usuario")
+    public List<PostagemModel> findAllByUsuarioContainingIgnoreCase(@Param("usuario") Long id);
 
 }

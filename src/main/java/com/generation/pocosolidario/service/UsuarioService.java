@@ -64,8 +64,13 @@ public class UsuarioService {
                 usuarioLogin.get().setFoto(usuario.get().getFoto());
                 usuarioLogin.get().setToken(gerarBasicToken(usuarioLogin.get().getUsuario(),        usuarioLogin.get().getSenha()));
                 usuarioLogin.get().setSenha(usuario.get().getSenha());
+<<<<<<< Updated upstream
                 usuarioLogin.get().setTipo(usuario.get().getTipo());
                 
+=======
+                usuarioLogin.get().setSenha(usuario.get().getTipo());
+                                
+>>>>>>> Stashed changes
                 return usuarioLogin;
 
             }

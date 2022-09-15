@@ -6,6 +6,7 @@ public class UsuarioLogin {
 	private Long id;
 	private String nome;
 	private String usuario;
+	private String endereco;
 	private String senha;
 	private String foto;
 	private String telefone;
@@ -76,6 +77,17 @@ public class UsuarioLogin {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+<<<<<<< Updated upstream
+=======
+	public String getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	
+	
+>>>>>>> Stashed changes
 	
 
 }
