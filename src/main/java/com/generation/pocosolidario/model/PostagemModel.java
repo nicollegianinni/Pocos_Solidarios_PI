@@ -32,6 +32,9 @@ public class PostagemModel {
 
 	@Size(max = 500, message = "O feedback deve conter no máximo 500 caracteres")
 	private String feedback;
+	
+	
+	private String status; 
 
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
@@ -104,5 +107,14 @@ public class PostagemModel {
 	public void setUsuario(UsuarioModel usuario) {
 		this.usuario = usuario;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 
 }
