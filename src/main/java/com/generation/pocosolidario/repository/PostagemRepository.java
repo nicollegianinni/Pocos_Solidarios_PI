@@ -21,7 +21,7 @@ public interface PostagemRepository extends JpaRepository<PostagemModel, Long> {
 
 	public List<PostagemModel> findAllByFeedbackContainingIgnoreCase(String feedback);
 	
-	@Query(nativeQuery=true, value="SELECT * from tb_postagens a INNER JOIN tb_usuarios b WHERE a.usuario_id = :usuario")
+	@Query(nativeQuery=true, value="SELECT * from tb_postagens a LEFT JOIN tb_usuarios b ON a.usuario_id = b.id WHERE a.usuario_id = :usuario")
     public List<PostagemModel> findAllByUsuarioContainingIgnoreCase(@Param("usuario") Long id);
 
 }
